@@ -1,0 +1,17 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+p {
+  color: blue;
+}
+
+p.FontRed {
+  color: red;
+}
+
+.horizon_content {
+  display: flex;
+  justify-content: space-evenly;
+}

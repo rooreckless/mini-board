@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+  header
+    h1 
+      =title
+    p
+      !=site_msg
+  div(role ="main")
+    .horizon_content
+      h2 ようこそ #{login.name} さん.
+      p
+        a(href='../users/logout') ログアウトする
+    hr
+    .horizon_content
+      div(role="new_confarea")
+        p (作成予定の)タイトル
+        br
+        !=formdata.new_marktitle
+        hr
+        p (作成予定の)コンテンツ
+        br
+        !=rendered_new_markcontent
+    
+      hr
+      div(role ="form")
+        p 下のフォームでマークダウンで記事を残せます。
+        p 
+          ='Markdown-itを使用しています。クラス値やid値の設定には'
+          a(href='https://www.npmjs.com/package/markdown-it-attrs') Markdown-it-attrs
+          ='の書き方を利用してください。'
+        form(method="post" action="/mark/#")
+            p タイトル
+            input(type="text" name="marktitle" size="50" value=formdata.new_marktitle)
+            p コンテンツ
+            textarea(name="markcontent" rows="30" cols="60")
+              !=formdata.new_markcontent
+            p
+              button(type="submit" formmethod=submit_act[0].method formaction=submit_act[0].actref) 
+                =submit_act[0].str
+            p
+              button(type="submit" formmethod=submit_act[1].method formaction=submit_act[1].actref)
+                =submit_act[1].str
+            //- https://www.deep-rain.com/programming/html/1305 を参考にbuttonの送信先を変えてみよう。
+    hr
+    a(href='/mark') 編集せずに記事一覧に戻る

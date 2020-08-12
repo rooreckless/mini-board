@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  header
+    h1 
+      =title
+  div(role ="main")
+    //- h2 #{datas[0].User.name} 's Home.
+    h2 #{login.name} 's Home.
+    p #{login.comment}
+    hr
+    p
+      table(style="width:90%;")
+        if datas != null
+          -for(var i in datas)
+            include /views/partials/data_item.pug
+            +tabletr(datas[i])

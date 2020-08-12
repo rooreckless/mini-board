@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  header
+    h1
+      =title
+    div(role="main")
+      p!= content
+      form(method="post" action="/users")
+        table
+          tr
+            th NAME
+            td
+              input(type="text" name="name" value="")
+          tr
+            th PASSWORD
+            td
+              input(type="password" name="password" value="")
+          tr
+            th
+            td
+              input(type="submit" value="ログイン")
+      p
+        a(href="/users/add")  アカウントの作成をする場合はこちら&gt;&gt;

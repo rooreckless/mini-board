@@ -1,0 +1,55 @@
+extends ../layout
+
+block content
+  header
+    h1 
+      =title
+    p
+      !=site_msg
+  div(role ="main")
+    .horizon_content
+      h2 ようこそ #{login.name} さん.
+      p
+        a(href='../users/logout') ログアウトする
+    hr
+    p 記事検索フォーム
+    form(method="post" action="/mark/search")
+      div(role ="form")
+        p タイトル
+        input(type="text" name="searchtitle" size="50" value=formdata)
+        p コンテンツ
+        input(type="text" name="searchcontent" size="50" value=formdata)
+        p
+        input(type="submit" value="検索開始")
+    hr
+    p 新規作成 下のフォームでマークダウンで記事を残せます。
+    form(method="post" action="/mark")
+      div(role ="form")
+        p タイトル
+        input(type="text" name="marktitle" size="50" value=formdata)
+        p コンテンツ
+        input(type="text" name="markcontent" size="50" value=formdata)
+        p
+        input(type="submit" value="送信")
+    hr
+    form(method="post" action="/mark/c_file" enctype="multipart/form-data")
+      p テキストファイル、mdファイルからメッセージを作成する。タイトルは記入してください。
+      p タイトル
+      input(type="text" name="marktitle" size="50")
+      input(type="file" name="filename")
+      button(type="submit") 送信する
+      
+    hr
+    p
+      table(style="width:95%;")
+        -for(var i in allmarks)
+          include /views/partials/data_mark.pug
+          +tabletr(allmarks[i])
+  .horizon_content
+    -if (maxcount > 1)
+      -if(nowpage != 1)
+        p
+          a(href='/mark/'+(nowpage-1)) prev 
+      -if(nowpage != maxpage)
+        p
+          a(href='/mark/'+(nowpage+1)) next

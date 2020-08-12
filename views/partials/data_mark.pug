@@ -1,0 +1,11 @@
+mixin tabletr(data)
+  tr
+    th(style="width:100px;")
+      //- a.home(href="/home/"+data.User.id+"/1")=data.User.name
+    td
+      a(href='/mark/show/'+(data.id))=data.title
+    td(style="width:150px;") 投稿日=>
+      //- -var d = new Date();
+      -var d = data.createdAt;
+      -var dstr = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()+'<br>'+d.getHours()+'時'+d.getMinutes()+'分'+d.getSeconds()+'秒';
+      !=dstr

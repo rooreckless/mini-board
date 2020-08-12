@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  header
+    h1 
+      =title
+    p
+      !=site_msg
+  div(role ="main")
+    .horizon_content
+      h2 ようこそ #{login.name} さん.
+      p
+        a(href='../users/logout') ログアウトする
+    form(method="post" action="/index")
+      p
+        input(type="text" name="msg" size="50" value=formdata)
+        input(type="submit" value="送信")
+    hr
+    form(method="post" action="/index/c_file" enctype="multipart/form-data")
+      p テキストファイルからメッセージを作成する
+      input(type="file" name="filename")
+      button(type="submit") 送信する
+    hr
+    p
+      table(style="width:95%;")
+        -for(var i in allmessages)
+          include /views/partials/data_msg.pug
+          +tabletr(allmessages[i])
+  .horizon_content
+    -if (maxcount > 1)
+      -if(nowpage != 1)
+        p
+          a(href='/index/'+(nowpage-1)) prev 
+      -if(nowpage != maxpage)
+        p
+          a(href='/index/'+(nowpage+1)) next

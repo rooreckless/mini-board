@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+  header
+    h1
+      =title
+  div(role ="main")
+    p
+      !=content
+    form(method="post" action="/users/add")
+      table
+        tr
+          th NAME
+          td
+            input(type="text" name="name" value=formdata.name)
+        tr
+          th E-Mail
+          td
+            input(type="email" name="email" value=formdata.email)
+        tr
+          th PASSWORD
+          td
+            input(type="password" name="password" value="")
+        tr
+          th COMMENT
+          td
+            textarea(name="comment" value=formdata.comment)
+        tr
+          th
+          td
+            input(type="submit" value="この内容でアカウントを作成")
+    p
+      a(href="/users/login")  すでにアカウントをお持ちの場合はこちら&lt;&lt;
